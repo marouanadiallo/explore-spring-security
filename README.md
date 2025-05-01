@@ -4,5 +4,3 @@
 - Spring Security in Action second edition (Author: Laurentiu Spilca)
 
 ### clone and explore project
-
-
