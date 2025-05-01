@@ -34,12 +34,14 @@ class SafeAspectsConfig {
 
         var usr1 = User.withUsername("alphamar")
                 .password(passwordEncoder.encode("mar123"))
-                .authorities("read")
+                .roles("admin")
+                .authorities("read", "write")
                 .build();
 
         var usr2 = User.withUsername("betamar")
                 .password(passwordEncoder.encode("mar321"))
-                .authorities("write")
+                .roles("manager")
+                .authorities("read")
                 .build();
 
         service.createUser(usr1);
