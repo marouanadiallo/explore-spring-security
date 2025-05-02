@@ -24,3 +24,5 @@ Authorization at the method level is achieved by using :
 
 ## Implementing permission for methods
 Avoid using long SpEL expressions. Use the concept of permission provided by spring security.
+`@PreAuthorize` and `@PostAuthorize` annotations can be used with `hasPermission(..., ...)`.
+See `PermissionEvaluator` for more information.
