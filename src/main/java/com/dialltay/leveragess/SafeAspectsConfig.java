@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,9 +20,12 @@ class SafeAspectsConfig {
     SecurityFilterChain defineSecurityFilterChain(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests(authz -> {
+            authz.requestMatchers( "/h2-console/**").permitAll();
             authz.anyRequest().authenticated();
         });
 
+        http.headers( headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
+        http.csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**"));
         http.httpBasic(Customizer.withDefaults());
 
         return http.build();
